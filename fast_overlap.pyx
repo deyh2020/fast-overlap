@@ -1,6 +1,11 @@
 import numpy as np
 cimport numpy as np
 cimport cython
+__all__ = [
+    "__version__",
+    "overlap",
+]
+__version__ = "0.1.0"
 # @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.nonecheck(False)
