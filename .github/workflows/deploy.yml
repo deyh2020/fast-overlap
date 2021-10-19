@@ -27,6 +27,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install build
+
+      # otherwise mac uses clang
+      - name: ensure use g++
+        run: |
+          export CC=gcc
+          export CXX=g++
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.2.0a1
 
