@@ -28,14 +28,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install build
 
-      # otherwise mac uses clang
-      - name: ensure use g++
-        if: matrix.os == 'macos=10.15'
-        run: |
-          export CC=gcc-9
-          export CXX=g++-9
-
       - name: Build wheels
+        env:
+          CC: gcc-9
+          CXX: g++-9
         uses: pypa/cibuildwheel@v2.2.0a1
 
       - uses: actions/upload-artifact@v2
