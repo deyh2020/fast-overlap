@@ -45,5 +45,4 @@ times["serial_numba"] = timeit(
     setup=setup,
     number=10,
 )
-# times['serial_py'] = timeit("overlap_numba.py_func(im1.astype(np.int32), im2.astype(np.int32), *shape)", setup=setup,number=10)
 print(times)
