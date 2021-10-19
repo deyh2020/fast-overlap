@@ -136,3 +136,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+fast_overlap.c
+fast_overlap.cpp
