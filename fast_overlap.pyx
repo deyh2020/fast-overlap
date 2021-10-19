@@ -1,15 +1,19 @@
 # distutils: language=c++
 
 import numpy as np
-cimport numpy as np
+
 cimport cython
+cimport numpy as np
+
 __all__ = [
     "__version__",
     "overlap",
     "overlap_parallel",
 ]
 cimport numpy as np
+
 import numpy as np
+
 
 cdef extern from "parallel_overlap.cpp":
     cdef void overlap_parallel_cpp(int *, int *, Py_ssize_t[2], int *, Py_ssize_t) nogil
@@ -19,7 +23,7 @@ cdef extern from "parallel_overlap.cpp":
 cpdef overlap_parallel(int [:,::1] prev, int[:,::1] curr, shape):
     prev = np.ascontiguousarray(prev)
     curr = np.ascontiguousarray(curr)
-    
+
     cdef np.ndarray[int, ndim=2, mode="c"] output = np.zeros(shape, dtype=np.dtype("i"))
     cdef Py_ssize_t ncols = shape[1]
 
@@ -60,5 +64,3 @@ cpdef overlap(int[:, :] prev, int[:,:] curr, shape):
             if p and c:
                 arr[p, c] += 1
     return np.asarray(arr)
-
-

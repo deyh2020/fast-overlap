@@ -1,6 +1,6 @@
 from timeit import timeit
 
-setup =  """
+setup = """
 from fast_overlap import overlap_parallel, overlap
 
 from skimage.draw import random_shapes
@@ -32,8 +32,18 @@ def overlap_numba(prev, curr, shape1, shape2):
 # axs[1].imshow(im2)
 # plt.show()
 times = {}
-times['serial_cpp'] = timeit("overlap(im1.astype(np.int32), im2.astype(np.int32), shape)", setup=setup,number=10)
-times['parallel_cpp'] = timeit("overlap_parallel(im1.astype(np.int32), im2.astype(np.int32), shape)", setup=setup,number=10)
-times['serial_numba'] = timeit("overlap_numba(im1.astype(np.int32), im2.astype(np.int32), *shape)", setup=setup,number=10)
+times["serial_cpp"] = timeit(
+    "overlap(im1.astype(np.int32), im2.astype(np.int32), shape)", setup=setup, number=10
+)
+times["parallel_cpp"] = timeit(
+    "overlap_parallel(im1.astype(np.int32), im2.astype(np.int32), shape)",
+    setup=setup,
+    number=10,
+)
+times["serial_numba"] = timeit(
+    "overlap_numba(im1.astype(np.int32), im2.astype(np.int32), *shape)",
+    setup=setup,
+    number=10,
+)
 # times['serial_py'] = timeit("overlap_numba.py_func(im1.astype(np.int32), im2.astype(np.int32), *shape)", setup=setup,number=10)
 print(times)
