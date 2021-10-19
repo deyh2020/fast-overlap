@@ -6,7 +6,7 @@ masks between two time points. Created for use in https://github.com/Hekstra-Lab
 ## Install
 
 ```
-pip install .
+pip install fast-overlap
 ```
 
 
