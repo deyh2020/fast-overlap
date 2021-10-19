@@ -12,8 +12,6 @@ __all__ = [
 ]
 cimport numpy as np
 
-import numpy as np
-
 
 cdef extern from "parallel_overlap.cpp":
     cdef void overlap_parallel_cpp(int *, int *, Py_ssize_t[2], int *, Py_ssize_t) nogil
@@ -32,7 +30,6 @@ cpdef overlap_parallel(int [:,::1] prev, int[:,::1] curr, shape):
     return output
 
 
-__version__ = "0.1.0"
 # @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.nonecheck(False)
