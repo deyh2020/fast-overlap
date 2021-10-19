@@ -25,6 +25,7 @@ cpdef overlap_parallel(int [:,::1] prev, int[:,::1] curr, shape):
     cdef np.ndarray[int, ndim=2, mode="c"] output = np.zeros(shape, dtype=np.dtype("i"))
     cdef Py_ssize_t ncols = shape[1]
 
+    print('about to nogil')
     with nogil:
         overlap_parallel_cpp(&prev[0,0], &curr[0,0], prev.shape, &output[0,0], ncols)
     return output
