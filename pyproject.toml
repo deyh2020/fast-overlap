@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 skip = ["*-win32", "*-manylinux_i686", "pp*", "*musllinux*"]
 
 [tool.cibuildwheel.macos]
-archs = ["x86_64", "arm64"]
+archs = ["x86_64"]
 
 [tool.isort]
 profile = "black"
