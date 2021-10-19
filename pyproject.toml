@@ -1,3 +1,14 @@
 [build-system]
 requires = ["setuptools>=40.8.0", "wheel", "numpy", "cython"]
 build-backend = "setuptools.build_meta"
+
+[tool.cibuildwheel]
+# Skip 32-bit builds & PyPy wheels on all platforms
+skip = ["*-win32", "*-manylinux_i686", "pp*", "*musllinux*"]
+
+[tool.cibuildwheel.macos]
+archs = ["x86_64", "arm64"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
