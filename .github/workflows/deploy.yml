@@ -30,9 +30,10 @@ jobs:
 
       # otherwise mac uses clang
       - name: ensure use g++
+        if: matrix.os == 'macos=10.15'
         run: |
-          export CC=gcc
-          export CXX=g++
+          export CC=gcc-9
+          export CXX=g++-9
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.2.0a1
