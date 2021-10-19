@@ -1,9 +1,8 @@
-from fast_overlap import overlap_parallel, overlap
-
-
+import numpy as np
 from skimage.draw import random_shapes
 from skimage.segmentation import relabel_sequential
-import numpy as np
+
+from fast_overlap import overlap, overlap_parallel
 
 im_shape = (1024, 1024)
 min_shapes = 5

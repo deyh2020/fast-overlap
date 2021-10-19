@@ -16,5 +16,5 @@ setup(
             )
         ],
         language_level="3",
-    )
+    ),
 )
