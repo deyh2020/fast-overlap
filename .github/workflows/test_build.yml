@@ -79,7 +79,7 @@ jobs:
           architecture: "x64"
 
       - name: install stuff
-        run: pip install scikit-image numpy
+        run: pip install pytest numpy
 
       - name: Download Docker Image (Artifact)
         uses: actions/download-artifact@v2
