@@ -8,6 +8,7 @@ from setuptools import Extension, setup
 # os.environ["CXX"] = "C:/Program Files/LLCM/bin/clang-cl.exe"
 if os.name == "nt":
     compile_args = ["/fopenmp", "/Ox"]
+    extra_link_args = []
 else:
     compile_args = [
         "-fopenmp",
