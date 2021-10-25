@@ -13,6 +13,7 @@ else:
         "-fopenmp",
         "-O3",
     ]
+    extra_link_args = ["-fopenmp"]
 # if os.name == "darwin":
 #     compile_args.append("-lomp")
 setup(
@@ -25,6 +26,7 @@ setup(
                 ["fast_overlap/fast_overlap.pyx"],
                 include_dirs=[numpy.get_include()],
                 extra_compile_args=compile_args,
+                extra_link_args=extra_link_args,
             )
         ],
         language_level="3",
