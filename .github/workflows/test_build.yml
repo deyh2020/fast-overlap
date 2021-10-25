@@ -91,6 +91,4 @@ jobs:
           pip install *.whl
 
       - name: Tests
-        run: |
-          cd examples
-          python test.py
+        run: pytest --color=yes
