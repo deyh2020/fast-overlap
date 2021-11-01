@@ -6,7 +6,6 @@ cimport cython
 cimport numpy as np
 
 __all__ = [
-    "__version__",
     "overlap",
     "overlap_parallel",
 ]
