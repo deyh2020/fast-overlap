@@ -18,9 +18,33 @@ cdef extern from "parallel_overlap.cpp":
 
 @cython.wraparound(False)
 @cython.nonecheck(False)
-cpdef overlap_parallel(int [:,::1] prev, int[:,::1] curr, shape):
+cpdef overlap_parallel(int [:,::1] prev, int[:,::1] curr, shape=None):
+    """
+    Calculate the pairwise overlap the labels for two arrays in
+    parallel using openmp. This may not work on non-linux OSes.
+
+    Currently limited to only accept `int` type arrays.
+
+    Parameters
+    ----------
+    prev, curr : 2D array-like of int
+        curr will have at least as many unique labels as prev
+    shape : tuple of int, optional
+        The shape of the output array. This should reflect the maximum
+        value of labels.
+
+    Returns
+    -------
+    arr : (N, M) array of int
+        N is the number of unique labels in prev and M the number of unique in curr.
+        The ijth entry in the array gives the number of pixels for which label *i* in prev
+        overlaps with *j* in curr.
+    """
     prev = np.ascontiguousarray(prev)
     curr = np.ascontiguousarray(curr)
+
+    if shape is None:
+        shape = (prev.max(), curr.max())
 
     cdef np.ndarray[int, ndim=2, mode="c"] output = np.zeros(shape, dtype=np.dtype("i"))
     cdef Py_ssize_t ncols = shape[1]
@@ -46,7 +70,7 @@ ctypedef fused ints:
 # @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.nonecheck(False)
-cpdef overlap(ints[:, :] prev, ints[:,:] curr, shape):
+cpdef overlap(ints[:, :] prev, ints[:,:] curr, shape=None):
     """
     Calculate the pairwise overlap the labels for two arrays.
 
@@ -54,6 +78,9 @@ cpdef overlap(ints[:, :] prev, ints[:,:] curr, shape):
     ----------
     prev, curr : 2D array-like of int
         curr will have at least as many unique labels as prev
+    shape : tuple of int, optional
+        The shape of the output array. This should reflect the maximum
+        value of labels.
 
     Returns
     -------
@@ -64,6 +91,10 @@ cpdef overlap(ints[:, :] prev, ints[:,:] curr, shape):
     """
     prev = np.ascontiguousarray(prev)
     curr = np.ascontiguousarray(curr)
+
+    if shape is None:
+        shape = (prev.max(), curr.max())
+
     cdef int [:, :] arr
     arr = np.zeros(shape, dtype=np.dtype("i"))
     cdef size_t I, J, i, j
