@@ -25,16 +25,28 @@ cpdef overlap_parallel(int [:,::1] prev, int[:,::1] curr, shape):
     cdef np.ndarray[int, ndim=2, mode="c"] output = np.zeros(shape, dtype=np.dtype("i"))
     cdef Py_ssize_t ncols = shape[1]
 
-    print('about to nogil')
     with nogil:
         overlap_parallel_cpp(&prev[0,0], &curr[0,0], prev.shape, &output[0,0], ncols)
     return output
 
 
+
+from libc cimport stdint
+
+ctypedef fused ints:
+    stdint.uint8_t
+    stdint.uint16_t
+    stdint.uint32_t
+    stdint.uint64_t
+    stdint.int8_t
+    stdint.int16_t
+    stdint.int32_t
+    stdint.int64_t
+
 # @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.nonecheck(False)
-cpdef overlap(int[:, :] prev, int[:,:] curr, shape):
+cpdef overlap(ints[:, :] prev, ints[:,:] curr, shape):
     """
     Calculate the pairwise overlap the labels for two arrays.
 
