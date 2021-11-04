@@ -14,7 +14,7 @@ import pytest  # noqa: E402
 
 import fast_overlap  # noqa: E402
 
-ims = np.load(str(Path(__file__).parent / "test-ims.npy"))
+ims = np.load(str(Path(__file__).parent / "test-ims.npy")).astype(np.int64)
 expected = np.load(str(Path(__file__).parent / "expected-overlap.npy"))
 shape = (int(np.max(ims[0]) + 1), int(np.max(ims[1]) + 1))
 
