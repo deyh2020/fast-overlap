@@ -1,9 +1,18 @@
-from pathlib import Path
+# noqa: E402
+import os
+import sys
 
-import numpy as np
-import pytest
+if os.environ.get("CI", False):
+    # remove the local version from sys.path so that we use the version
+    # we installed from the wheel
+    sys.path = sys.path[1:]
 
-import fast_overlap
+from pathlib import Path  # noqa: E402
+
+import numpy as np  # noqa: E402
+import pytest  # noqa: E402
+
+import fast_overlap  # noqa: E402
 
 ims = np.load(str(Path(__file__).parent / "test-ims.npy"))
 expected = np.load(str(Path(__file__).parent / "expected-overlap.npy"))
