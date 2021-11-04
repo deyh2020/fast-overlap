@@ -92,7 +92,7 @@ cpdef overlap(ints[:, :] prev, ints[:,:] curr, shape=None):
     curr = np.ascontiguousarray(curr)
 
     if shape is None:
-        shape = (prev.max(), curr.max())
+        shape = (np.max(prev), np.max(curr))
 
     cdef int [:, :] arr
     arr = np.zeros(shape, dtype=np.dtype("i"))
