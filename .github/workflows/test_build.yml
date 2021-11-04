@@ -80,7 +80,7 @@ jobs:
       - name: install stuff
         run: pip install pytest numpy
 
-      - name: Download Docker Image (Artifact)
+      - name: Download Wheels (Artifact)
         uses: actions/download-artifact@v2
         with:
           name: ${{matrix.os}}-${{matrix.python-version}}-wheel
