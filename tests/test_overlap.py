@@ -26,6 +26,11 @@ def test_overlap(type):
     assert np.all(out == expected)
 
 
+def test_overlap_no_shape():
+    out = fast_overlap.overlap(ims[0], ims[1])
+    assert np.all(out == expected)
+
+
 def test_parallel_overlap():
     out = fast_overlap.overlap_parallel(
         ims[0].astype(np.int32), ims[1].astype(np.int32), shape
